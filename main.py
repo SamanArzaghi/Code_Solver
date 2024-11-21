@@ -6,7 +6,9 @@ async def main():
     solver_instance = Solver()
     
     # Define a text problem
-    text_problem = "Write a python function to calculate the sum of two numbers."
+    text_problem = """
+Write the problem here...
+"""
     
     # Call the solve function with the text problem
     solution = await solver_instance.solve(text_problem)
