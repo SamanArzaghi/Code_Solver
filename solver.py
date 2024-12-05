@@ -9,6 +9,7 @@ class Solver:
         self.openai_aclient = AsyncOpenAI(api_key=API_KEY)
         self.sketch_tasks = []
         self.sketches = []
+        
     async def solve(self, problem: str = "", num_refinements: int = 3):
 
         # Generate multiple sketches
@@ -20,7 +21,7 @@ class Solver:
         for task in self.sketch_tasks:
             result = await task
             self.sketches.append(result)
-
+ 
         # Refine the sketches
         refined_sketch = await self.refine_sketch(problem=problem, sketches=self.sketches)
 
@@ -33,7 +34,7 @@ class Solver:
         # Refine the code
         for _ in range(num_refinements):
             refined_code = await self.refine_code(problem=problem, code=code)
-
+        
         return refined_code['code']
 
     async def sketch_solution(self, problem: str = "", temp: float = 0.5):
